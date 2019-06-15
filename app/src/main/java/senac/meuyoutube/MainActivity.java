@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,42 +33,49 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                RadioButton culinaria = findViewById(R.id.rbculinaria);
-                RadioButton animais = findViewById(R.id.rbanimais);
-                RadioButton tecnologia = findViewById(R.id.rbtecnologia);
-                RadioButton beleza = findViewById(R.id.rbbeleza);
-                RadioButton esporte = findViewById(R.id.rbesporte);
-                WebView youtube = findViewById(R.id.webyoutube);
-                String videoID = "";
+             // tratamendo de excessão abaixo
+                 try { // no try fica o codigo
 
-                if (culinaria.isChecked()){
-                    videoID = "jdNqD8QxW3s";
+                     RadioButton culinaria = findViewById(R.id.rbculinaria);
+                     RadioButton animais = findViewById(R.id.rbanimais);
+                     RadioButton tecnologia = findViewById(R.id.rbtecnologia);
+                     RadioButton beleza = findViewById(R.id.rbbeleza);
+                     RadioButton esporte = findViewById(R.id.rbesporte);
+                     WebView youtube = findViewById(R.id.webyoutube);
+                     String videoID = "";
+
+                     if (culinaria.isChecked()){
+                         videoID = "jdNqD8QxW3s";
+
+                     }
+                     else if (animais.isChecked()){
+                         videoID = "e3horrHdRb4";
+                     }
+                     else if (tecnologia.isChecked()){
+                         videoID = "OP8tKvBhVq8";
+                     }
+                     else if (beleza.isChecked()){
+                         videoID = "6ZKDKs2VHho";
+
+                     }
+                     else {
+                         videoID = "W2f1cKL13xc";
+                     }
+
+                     youtube.getSettings().setJavaScriptEnabled(true);
+                     youtube.getSettings().setPluginState(WebSettings.PluginState.ON);
+                     youtube.loadUrl("http://www.youtube.com/embed/" + videoID + "?autoplay=1&vq=small");
+                     youtube.setWebChromeClient(new WebChromeClient());
+
+                } catch (Exception ex ){ // fica a mensagem de erro ao usuario
+
+                     Log.e("Onclick fab", ex.getMessage());
+                     Toast.makeText(getApplicationContext(), "Houve um erro..", Toast.LENGTH_LONG).show();
 
                 }
-                else if (animais.isChecked()){
-                    videoID = "e3horrHdRb4";
-                }
-                else if (tecnologia.isChecked()){
-                    videoID = "OP8tKvBhVq8";
-                }
-                else if (beleza.isChecked()){
-                    videoID = "6ZKDKs2VHho";
-
-                }
-                else {
-                    videoID = "W2f1cKL13xc";
-                }
-
-                youtube.getSettings().setJavaScriptEnabled(true);
-                youtube.getSettings().setPluginState(WebSettings.PluginState.ON);
-                youtube.loadUrl("http://www.youtube.com/embed/" + videoID + "?autoplay=1&vq=small");
-                youtube.setWebChromeClient(new WebChromeClient());
 
 
 
-
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
     }
