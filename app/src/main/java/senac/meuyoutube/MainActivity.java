@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                      youtube.getSettings().setJavaScriptEnabled(true);
                      youtube.getSettings().setPluginState(WebSettings.PluginState.ON);
-                     youtube.loadUrl("http://www.youtube.com/embed/" + videoID + "?autoplay=1&vq=small");
+                     youtube.loadUrl("https://www.youtube.com/embed/" + videoID + "?autoplay=1&vq=small");
                      youtube.setWebChromeClient(new WebChromeClient());
 
                 } catch (Exception ex ){ // fica a mensagem de erro ao usuario
