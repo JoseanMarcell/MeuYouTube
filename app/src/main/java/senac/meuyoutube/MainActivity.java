@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 youtube.setWebChromeClient(new WebChromeClient());
 
 
+
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
